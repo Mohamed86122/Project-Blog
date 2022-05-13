@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AnswerController extends AbstractController
+class AnswerController extends BaseController
 {
     /**
      * @Route("/answers/popular", name="app_popular_answers")
@@ -28,6 +28,7 @@ class AnswerController extends AbstractController
 
     /**
      * @Route("/answers/{id}/vote", methods="POST", name="answer_vote")
+     * #[IsGranted("IS_AUTHENTICATED_REMEMBERED")]
      */
     public function answerVote(Answer $answer, LoggerInterface $logger, Request $request, EntityManagerInterface $entityManager)
     {

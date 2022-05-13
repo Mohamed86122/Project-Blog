@@ -139,6 +139,15 @@
     "pagerfanta/twig": {
         "version": "v3.3.0"
     },
+    "phpdocumentor/reflection-common": {
+        "version": "2.2.0"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "5.3.0"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "1.6.1"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -150,6 +159,18 @@
     },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "sensio/framework-extra-bundle": {
+        "version": "6.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        },
+        "files": [
+            "./config/packages/sensio_framework_extra.yaml"
+        ]
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",
@@ -238,6 +259,9 @@
             ".env"
         ]
     },
+    "symfony/form": {
+        "version": "v5.3.14"
+    },
     "symfony/framework-bundle": {
         "version": "5.3",
         "recipe": {
@@ -293,11 +317,17 @@
             "config/packages/test/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v5.3.14"
+    },
     "symfony/password-hasher": {
         "version": "v5.3.14"
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.17.1"
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.25.0"
     },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.17.1"
@@ -360,6 +390,9 @@
     "symfony/security-http": {
         "version": "v5.3.14"
     },
+    "symfony/serializer": {
+        "version": "v5.3.14"
+    },
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
@@ -403,6 +436,18 @@
     },
     "symfony/ux-chartjs": {
         "version": "v1.3.0"
+    },
+    "symfony/validator": {
+        "version": "5.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.3",
+            "ref": "c32cfd98f714894c4f128bb99aa2530c1227603c"
+        },
+        "files": [
+            "./config/packages/validator.yaml"
+        ]
     },
     "symfony/var-dumper": {
         "version": "v5.0.4"
@@ -457,6 +502,9 @@
     },
     "twig/twig": {
         "version": "v3.0.1"
+    },
+    "webmozart/assert": {
+        "version": "1.10.0"
     },
     "zenstruck/assert": {
         "version": "v1.0.1"

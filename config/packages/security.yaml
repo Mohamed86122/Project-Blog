@@ -3,6 +3,10 @@ security:
     enable_authenticator_manager: true
     hide_user_not_found: false
     
+    role_hierarchy: 
+        ROLE_ADMIN: [ROLE_COMMENT_ADMIN,ROLE_USER_ADMIN,ROLE_ALLOWED_TO_SWITCH]
+        ROLE_Humanresources: [ROLE_USER_ADMIN]
+
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -20,8 +24,28 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\LoginAuthanticatorAuthenticator
+            entry_point: form_login
+            custom_authenticator:
+            #    - App\Security\LoginAuthanticatorAuthenticator
+                - App\Security\DummyAnthenticatorAuthenticator
+
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                username_parameter: email
+                password_parameter: password
+
             logout: true
+            
+
+            switch_user: true
+
+
+            remember_me:
+                secret: '%kernel.secret%'
+                always_remember_me: true
+                signature_properties: [password]
+
 
             #if you choose to logout in other route edit it in target 
 
@@ -34,7 +58,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

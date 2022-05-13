@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Entity\User;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use App\Service\MarkdownHelper;
@@ -28,7 +29,7 @@ class QuestionController extends AbstractController
 
 
     /**
-     * @Route("/{page<\d+>}", name="app_homepage")
+     * @Route("/forum/{page<\d+>}", name="app_home")
      */
     public function homepage(QuestionRepository $repository, int $page = 1)
     {
@@ -45,9 +46,11 @@ class QuestionController extends AbstractController
 
     /**
      * @Route("/questions/new")
+     * #[IsGranted("ROLE_ADMIN")]
      */
     public function new()
     {
+        
         return new Response('Sounds like a GREAT feature for V2!');
     }
 
@@ -61,6 +64,22 @@ class QuestionController extends AbstractController
         }
 
         return $this->render('question/show.html.twig', [
+            'question' => $question,
+        ]);
+    }
+    /**
+     * @Route("/questions/edit/{slug}", name="app_question_edit")
+     */
+    public function edit(Question $question)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
+        if($question->getOwner() != $this->getUser())
+        {
+            throw $this->createAccessDeniedException();
+
+        }
+        return $this->render('question/edit.html.twig', [
             'question' => $question,
         ]);
     }
